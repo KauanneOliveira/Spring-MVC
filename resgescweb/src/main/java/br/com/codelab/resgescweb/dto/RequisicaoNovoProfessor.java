@@ -16,7 +16,7 @@ public class RequisicaoNovoProfessor {
 
     @NotBlank
     @NotNull
-    private String nome;
+    private String nome; //em caso de erro, a mensagem associada a esse campo estará atrelada com essa estrutura NotBlank.requesicaoNovoProfessor.name
     @NotNull
     @DecimalMin("0.0")
     private BigDecimal salario;
