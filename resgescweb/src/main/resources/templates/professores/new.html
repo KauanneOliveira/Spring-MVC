@@ -15,20 +15,20 @@
 
     <div class="container">
         <div class="row">
-            <form action="/professores" method="POST"> <!-- como são dados sensíveis o método será POST, pq a intenção não é ter a resposta na URL como ocorre com o GET -->
+            <form th:object="${requisicaoNovoProfessor}" action="/professores" method="POST"> <!-- como são dados sensíveis o método será POST, pq a intenção não é ter a resposta na URL como ocorre com o GET -->
                 <div class="mb-3">
                     <label class="form-label">Nome do Professor</label>
-                    <input class="form-control" type="text" name="nome"/>
+                    <input class="form-control" type="text" th:field="*{nome}"/>
                     <div></div>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Salário</label>
-                    <input class="form-control" type="text" name="salario"/>
+                    <input class="form-control" type="text" th:field="*{salario}/>
                     <div></div>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Status</label>
-                    <select  class="form-control" name="statusProfessor">
+                    <select  class="form-control" th:field="*{statusProfessor}>
                             <!--forma de inserir todas as opções na mão-->
 <!--                        <option value="ATIVO">ATIVO</option>-->
 <!--                        <option value="INATIVO">INATIVO</option>-->
@@ -39,7 +39,7 @@
 <!--                        <option th:each="status : ${T(br.com.codelab.regescweb.models.StatusProfessor).values()}"-->
 <!--                                th:value="${status}" th:text="${status}"></option>-->
 
-                            <option th:each="status : ${statusProfessor}"
+                            <option th:each="status : ${listaStatusProfessor}"
                                     th:value="${status}" th:text="${status}"></option>
 
 

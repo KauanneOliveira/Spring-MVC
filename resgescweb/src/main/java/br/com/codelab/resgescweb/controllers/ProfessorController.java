@@ -31,11 +31,11 @@ public class ProfessorController {
         return mv;
     }
 
-    @GetMapping("/professor/new")
+    @GetMapping("/professores/new")
     public ModelAndView nnew(){
 
         ModelAndView mv = new ModelAndView("professores/new");
-        mv.addObject("statusProfessor", StatusProfessor.values());
+        mv.addObject("listaStatusProfessor", StatusProfessor.values());
 
         return mv;
     }
@@ -43,17 +43,18 @@ public class ProfessorController {
     //há um problema em fazer assim, porque está passando a entidade final, remetendo a um problema de segurança
     //alguém poderia reabilitar/editar na mão um campo que vc desabilitou
     @PostMapping("/professores")
-    public String create(@Valid RequisicaoNovoProfessor requisicao, BindingResult bindingResult){
-        if(bindingResult.hasErrors()){ //caso não entre com nenhum dado (que será dado como erro)  entra nessa condição
-
-
-            return "redirect:/professor/new";
+    public ModelAndView create(@Valid RequisicaoNovoProfessor requisicao, BindingResult bindingResult){
+        //caso não entre com nenhum dado (que será dado como erro)  entra nessa condição
+        if(bindingResult.hasErrors()){
+            ModelAndView mv = new ModelAndView("professores/new");
+            mv.addObject("listaStatusProfessor", StatusProfessor.values());
+            return mv;
         }
         else{
             Professor professor = requisicao.toProfessor();
             this.professorRepository.save(professor);
 
-            return "redirect:/professores";
+            return new ModelAndView("redirect:/professores");
         }
     }
 }
