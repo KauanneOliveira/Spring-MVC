@@ -1,11 +1,13 @@
 package br.com.codelab.resgescweb.controllers;
 
+import br.com.codelab.resgescweb.dto.RequisicaoNovoProfessor;
 import br.com.codelab.resgescweb.models.Professor;
 import br.com.codelab.resgescweb.models.StatusProfessor;
 import br.com.codelab.resgescweb.repositories.ProfessorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 
@@ -34,6 +36,16 @@ public class ProfessorController {
         mv.addObject("statusProfessor", StatusProfessor.values());
 
         return mv;
+    }
+
+    //há um problema em fazer assim, porque está passando a entidade final, remetendo a um problema de segurança
+    //alguém poderia reabilitar/editar na mão um campo que vc desabilitou
+    @PostMapping("/professores")
+    public String create(RequisicaoNovoProfessor requisicao){
+        Professor professor = requisicao.toProfessor();
+        this.professorRepository.save(professor);
+
+        return "redirect:/professores";
     }
 }
 
