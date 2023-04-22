@@ -2,6 +2,10 @@ package br.com.codelab.resgescweb.dto;
 
 import br.com.codelab.resgescweb.models.Professor;
 import br.com.codelab.resgescweb.models.StatusProfessor;
+
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 //É uma classe DTO (Date Transfer Object)
@@ -10,7 +14,11 @@ import java.math.BigDecimal;
 
 public class RequisicaoNovoProfessor {
 
+    @NotBlank
+    @NotNull
     private String nome;
+    @NotNull
+    @DecimalMin("0.0")
     private BigDecimal salario;
     private StatusProfessor statusProfessor;
 
