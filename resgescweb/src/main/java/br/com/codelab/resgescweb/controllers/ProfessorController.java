@@ -32,7 +32,7 @@ public class ProfessorController {
     }
 
     @GetMapping("/professores/new")
-    public ModelAndView nnew(){
+    public ModelAndView nnew(RequisicaoNovoProfessor requisicao){
 
         ModelAndView mv = new ModelAndView("professores/new");
         mv.addObject("listaStatusProfessor", StatusProfessor.values());
@@ -44,6 +44,7 @@ public class ProfessorController {
     //alguém poderia reabilitar/editar na mão um campo que vc desabilitou
     @PostMapping("/professores")
     public ModelAndView create(@Valid RequisicaoNovoProfessor requisicao, BindingResult bindingResult){
+
         //caso não entre com nenhum dado (que será dado como erro)  entra nessa condição
         if(bindingResult.hasErrors()){
             ModelAndView mv = new ModelAndView("professores/new");

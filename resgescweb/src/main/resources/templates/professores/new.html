@@ -18,17 +18,18 @@
             <form th:object="${requisicaoNovoProfessor}" action="/professores" method="POST"> <!-- como são dados sensíveis o método será POST, pq a intenção não é ter a resposta na URL como ocorre com o GET -->
                 <div class="mb-3">
                     <label class="form-label">Nome do Professor</label>
-                    <input class="form-control" type="text" th:field="*{nome}"/>
-                    <div></div>
+                    <input class="form-control" th:errorclass="is-invalid" type="text" th:field="*{nome}"/>
+                    <div class="invalid-feedback" th:errors="*{nome}"></div>
+
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Salário</label>
-                    <input class="form-control" type="text" th:field="*{salario}/>
-                    <div></div>
+                    <input class="form-control" th:errorclass="is-invalid" type="text" th:field="*{salario}"/>
+                    <div class="invalid-feedback" th:errors="*{salario}"></div>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Status</label>
-                    <select  class="form-control" th:field="*{statusProfessor}>
+                    <select  class="form-control" th:field="*{statusProfessor}">
                             <!--forma de inserir todas as opções na mão-->
 <!--                        <option value="ATIVO">ATIVO</option>-->
 <!--                        <option value="INATIVO">INATIVO</option>-->
@@ -41,8 +42,6 @@
 
                             <option th:each="status : ${listaStatusProfessor}"
                                     th:value="${status}" th:text="${status}"></option>
-
-
                     </select>
                 </div>
                 <button class="btn btn-primary" type="submit">Submeter</button>
