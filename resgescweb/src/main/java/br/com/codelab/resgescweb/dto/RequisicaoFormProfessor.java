@@ -12,7 +12,7 @@ import java.math.BigDecimal;
 //será uma classe auxiliar que vai receber todos os valores dos campos do formulário que deseja que o usuário informe
 //de modo que se algueém tentar manipular  o html e tentar modificar a mão um dado que não que essa classe não receba, não será armazenado no bdd
 
-public class RequisicaoNovoProfessor {
+public class RequisicaoFormProfessor {
 
     @NotBlank
     @NotNull
@@ -53,6 +53,19 @@ public class RequisicaoNovoProfessor {
         professor.setStatusProfessor(this.statusProfessor);
 
         return professor;
+    }
+
+    public Professor toProfessor(Professor professor){
+        professor.setNome(this.nome);
+        professor.setSalario(this.salario);
+        professor.setStatusProfessor(this.statusProfessor);
+        return professor;
+    }
+
+    public void fromProfessor(Professor professor){
+        this.nome = professor.getNome();
+        this.salario = professor.getSalario();
+        this.statusProfessor = professor.getStatusProfessor();
     }
 
     @Override
