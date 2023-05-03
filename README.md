@@ -2,7 +2,7 @@
 
 ## Atividade da Semana 2 do projeto CodeLab do IFSP
 
-Repositório criado para armazenar os códigos do estudo sobre o Spring MVC.
+Repositório criado para armazenar os códigos do estudo sobre o Spring MVC do curso `Introdução ao Spring MVC`.
 
 ##  Autor
 
